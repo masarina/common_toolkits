@@ -3,8 +3,8 @@ import subprocess
 import pickle
 
 # メールアドレスやIDを設定
-git_user = "Masarina"
-git_email = "masarinahayashi985@gmail.com"
+git_user = "youer_Name"
+git_email = "youre_email.com"
 
 # Gitの設定を反映
 subprocess.run(["git", "config", "--global", "user.name", git_user])
