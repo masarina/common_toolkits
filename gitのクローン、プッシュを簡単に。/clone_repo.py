@@ -3,7 +3,7 @@ import subprocess
 import pickle
 
 # メールアドレスやIDを設定
-git_user = "youer_Name"
+git_user = "youre_name"
 git_email = "youre_email.com"
 
 # Gitの設定を反映
@@ -18,9 +18,9 @@ repo_name = os.path.basename(repo_url).replace(".git", "")
 if not os.path.exists(repo_name):
     os.mkdir(repo_name)
 
-# リポジトリ名をpickleで保存
+# リポジトリ名とURLをpickleで保存
 with open('repo_info.pkl', 'wb') as f:
-    pickle.dump({'repo_name': repo_name}, f)
+    pickle.dump({'repo_name': repo_name, 'repo_url': repo_url}, f)
 
 # クローンを実行
 subprocess.run(["git", "clone", repo_url, repo_name])
