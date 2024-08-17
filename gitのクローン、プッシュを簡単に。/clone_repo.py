@@ -11,7 +11,13 @@ subprocess.run(["git", "config", "--global", "user.name", git_user])
 subprocess.run(["git", "config", "--global", "user.email", git_email])
 
 # リポジトリのURLを入力
-repo_url = input("リポジトリのSSH URLを入力してください (例: git@github.com:user/repo.git): ")
+repo_url = input("リポジトリのURLを入力してください (例: https://github.com/user/repo.git か git@github.com:user/repo.git): ")
+
+# HTTPS URLをSSH URLに変換
+if repo_url.startswith("https://github.com/"):
+    ssh_url = repo_url.replace("https://github.com/", "git@github.com:")
+    print(f"HTTPS URLをSSH URLに変換しました: {ssh_url}")
+    repo_url = ssh_url
 
 # クローン先のディレクトリ名を決定（リポジトリ名を利用）
 repo_name = os.path.basename(repo_url).replace(".git", "")
