@@ -44,3 +44,10 @@ subprocess.run(["git", "commit", "-m", commit_message])
 subprocess.run(["git", "push", "origin", "main"])
 
 print(f"{repo_name} の内容がリポジトリにプッシュされました。")
+
+# クローンしたディレクトリとpickleファイルを削除
+os.chdir(current_dir)  # 作業ディレクトリに戻る
+subprocess.run(["rm", "-rf", repo_name])  # クローンされたリポジトリディレクトリを削除
+os.remove('repo_info.pkl')  # pickleファイルを削除
+
+print(f"{repo_name} ディレクトリと 'repo_info.pkl' が削除されました。")
