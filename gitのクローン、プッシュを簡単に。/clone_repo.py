@@ -6,6 +6,7 @@ import pickle
 git_user = "your_name"
 git_email = "your_email.com"
 
+
 # Gitの設定を反映
 subprocess.run(["git", "config", "--global", "user.name", git_user])
 subprocess.run(["git", "config", "--global", "user.email", git_email])
