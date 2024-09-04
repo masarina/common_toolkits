@@ -101,21 +101,26 @@ class ChannelCreatorCheckerPlayer(SuperPlayer):
 
     def main(self):
         """
-        チャンネル作成者を確認して処理するメイン関数（非同期ではない）。
+        チャンネル作成者を確認して処理するメイン関数。
+        チャンネルIDが無くなるまで繰り返し処理を行う。
         """
         # 必要な情報を取得
         bot = self.one_time_world_instance.ball.all_data_dict["bot"]
 
-        # チャンネル作成者を確認するためにrunを呼び出し
-        result = self.run(bot)
+        # JSONファイルにチャンネルIDがある限り処理を繰り返す
+        json_file_path = f"{os.path.dirname(os.path.abspath(__file__))}/channel_user_data.json"
+        while os.path.exists(json_file_path):
+            with open(json_file_path, 'r') as file:
+                data = json.load(file)
+                if not data:
+                    break  # JSONにチャンネルIDが無ければループを終了
 
-        # 処理が完了したら、JSONファイルからチャンネルIDを削除
-        if result:
-            json_file_path = f"{os.path.dirname(os.path.abspath(__file__))}/channel_user_data.json"
-            if os.path.exists(json_file_path):
-                with open(json_file_path, 'r') as file:
-                    data = json.load(file)
-                    channel_id = next(iter(data))  # JSONの最初のチャンネルIDを取得
-                    self.remove_channel_from_json(channel_id)
+            # チャンネル作成者を確認するためにrunを呼び出し
+            result = self.run(bot)
 
-        return "Completed" if result else "Failed"
+            # 処理が完了したら、JSONファイルからチャンネルIDを削除
+            if result:
+                channel_id = next(iter(data))  # JSONの最初のチャンネルIDを取得
+                self.remove_channel_from_json(channel_id)
+
+        return "Completed"
