@@ -87,7 +87,7 @@ class UpdateUIDPlayer(SuperPlayer):
         print(f"データが {file_path} に保存されました。")
 
 # メモ:
-# このファイルは UpdateUserInformationPlayer クラスを含んでおり、
+# このファイルは UpdateUIDPlayer クラスを含んでおり、
 # - user_ids.txt からユーザーIDを取得し、
 # - all_user_information_dict.pkl ファイルに存在しないIDを追加してpickleに保存します。
 # BallPassSchedulePatternを利用して、他のプレイヤー間でこの情報を共有できます。
@@ -97,4 +97,4 @@ class UpdateUIDPlayer(SuperPlayer):
 # - all_user_information_dict.pkl : 全ユーザーID情報が保存されるpickleファイル。このファイルは更新形式で使用されます。
 
 # 作成されたファイル:
-# - このファイル (UpdateUserInformationPlayer) : 上記の機能を実装したプレイヤーです。
+# - このファイル (UpdateUIDPlayer) : 上記の機能を実装したプレイヤーです。
