@@ -43,7 +43,7 @@ class WelcomeNewUserPlayer(SuperPlayer):
             raise ValueError("必要なデータがball.all_data_dictから取得できませんでした。")
 
         # メッセージを非同期で送信するためにrunメソッドを使用
-        asyncio.run(one_time_world_instance.endMessagePlayer.send_message(bot, channel_id, welcome_message))
+        asyncio.run(one_time_world_instance.sendMessagePlayer.send_message(bot, channel_id, welcome_message))
 
 
         # ランクをnew_userにアップグレード
