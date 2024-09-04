@@ -64,7 +64,7 @@ class UpdateUIDPlayer(SuperPlayer):
                 user_ids = file.read().splitlines()
                 
             for user_id in user_ids:
-                # 新しいユーザーに "visitor" ランクを追加
+                # 新しいユーザーに id,user_rank の初期化を実装
                 user_data_dict[user_id] = {"id": user_id, "user_rank": "visitor"}
         
         return user_data_dict
