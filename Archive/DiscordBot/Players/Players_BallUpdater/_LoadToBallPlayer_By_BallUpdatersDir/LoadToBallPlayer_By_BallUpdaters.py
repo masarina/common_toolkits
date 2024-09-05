@@ -15,7 +15,7 @@ class LoadToBallPlayer_By_BallUpdaters(SuperPlayer):
         """
 
         # JSONファイルのパスを構築
-        json_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "all_user_information_dict.json")
+        json_file_path = one_time_world_instance.updateUIDPlayer.
         
         # ball.all_data_dictにパスを追加
         self.one_time_world_instance.ball.all_data_dict["all_user_information_dict"] = json_file_path
