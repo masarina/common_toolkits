@@ -8,7 +8,7 @@ class ChannelCreatorCheckerPlayer(SuperPlayer):
     def __init__(self):
         super().__init__()
         self.my_name = "ChannelCreatorCheckerPlayer"
-        self.channel_creator_data_path = channel_data_json_path = f"{os.path.dirname(os.path.abspath(__file__))}/channel_user_data.json"
+        self.channel_creator_data_path = f"{os.path.dirname(os.path.abspath(__file__))}/channel_user_data.json"
 
     def return_my_name(self):
         return self.my_name
