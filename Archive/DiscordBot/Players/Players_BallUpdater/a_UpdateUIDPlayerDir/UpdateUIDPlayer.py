@@ -6,6 +6,7 @@ class UpdateUIDPlayer(SuperPlayer):
     def __init__(self):
         super().__init__()  # スーパークラスの初期化メソッドを呼び出す
         self.my_name = None
+        self.save_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "all_user_information_dict.json")
 
     def return_my_name(self):
         return "UpdateUIDPlayer"
@@ -19,7 +20,7 @@ class UpdateUIDPlayer(SuperPlayer):
         """
 
         # JSONファイルのパスを設定
-        save_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "all_user_information_dict.json")
+        save_path = self.save_path
         
         # JSONファイルからデータを読み込む
         user_data_dict = self.load_data_from_json(save_path)
