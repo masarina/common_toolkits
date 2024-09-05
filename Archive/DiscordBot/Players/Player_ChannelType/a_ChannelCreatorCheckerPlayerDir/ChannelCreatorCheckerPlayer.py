@@ -28,7 +28,7 @@ class ChannelCreatorCheckerPlayer(SuperPlayer):
         作成者が分かった場合は、そのユーザーIDとチャンネルIDを返す。
         """
         # チャンネルデータが保存されているJSONファイルのパス
-        channel_data_json_path = f"{os.path.dirname(os.path.abspath(__file__))}/channel_user_data.json"
+        channel_data_json_path = self.channel_creator_data_path
         if not os.path.exists(channel_data_json_path):
             return None
 
