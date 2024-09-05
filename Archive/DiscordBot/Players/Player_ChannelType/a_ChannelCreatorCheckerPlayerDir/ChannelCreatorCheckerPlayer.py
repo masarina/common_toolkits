@@ -85,7 +85,7 @@ class ChannelCreatorCheckerPlayer(SuperPlayer):
             channel_creator_info = {}
 
         # チャンネルIDと作成者のユーザーIDを追加・更新
-        channel_creator_info[created_channel_id] = creator_user_id
+        channel_creator_info[creator_user_id] = created_channel_id
 
         # 更新されたデータを保存
         with open(channel_creator_info_json_path, 'w') as file:
