@@ -76,8 +76,13 @@ class UpdateUIDPlayer(SuperPlayer):
         """
         for user_id, data in new_data.items():
             if user_id not in existing_data:
-                existing_data[user_id] = data
+                # 新しいユーザーに id と user_rank を追加
+                existing_data[user_id] = {
+                    "id": user_id,
+                    "user_rank": "visitor"
+                }
         return existing_data
+
 
     def save_data_to_pickle(self, data, file_path):
         """
