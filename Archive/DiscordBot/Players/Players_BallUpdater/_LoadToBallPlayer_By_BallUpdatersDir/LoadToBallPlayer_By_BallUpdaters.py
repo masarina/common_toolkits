@@ -13,11 +13,8 @@ class LoadToBallPlayer_By_BallUpdaters(SuperPlayer):
         """
         JSONファイルのパスをball.all_data_dictに追加するプレイヤー。
         """
-
-        # JSONファイルのパスを構築
-        json_file_path = one_time_world_instance.updateUIDPlayer.save_path
         
         # ball.all_data_dictにパスを追加
-        self.one_time_world_instance.ball.all_data_dict["all_user_information_dict"] = json_file_path
+        self.one_time_world_instance.ball.all_data_dict["all_user_information_dict"] = one_time_world_instance.updateUIDPlayer.save_path
 
         return "Completed"
