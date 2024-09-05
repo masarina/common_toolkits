@@ -1,13 +1,13 @@
 import os
 from Players_CommonPlayers.SuperPlayerDir.SuperPlayer import SuperPlayer
 
-class LoadToBallPlayer_By_BallUpdaters(SuperPlayer):
+class LoadToBallPlayer_By_ChannelType(SuperPlayer):
     def __init__(self):
         super().__init__()  # スーパークラスの初期化メソッドを呼び出す
         self.my_name = None
 
     def return_my_name(self):
-        return "LoadToBallPlayer_By_BallUpdaters"
+        return "LoadToBallPlayer_By_ChannelType"
 
     def main(self):
         """
