@@ -1,5 +1,5 @@
 import os
-import pickle
+import json
 from Players_CommonPlayers.SuperPlayerDir.SuperPlayer import SuperPlayer
 
 class UpdateUIDPlayer(SuperPlayer):
@@ -18,34 +18,34 @@ class UpdateUIDPlayer(SuperPlayer):
         最新のworldを代入してあります。
         """
 
-        # ピクルファイルのパスを設定
-        save_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "all_user_information_dict.pkl")
+        # JSONファイルのパスを設定
+        save_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "all_user_information_dict.json")
         
-        # pickleファイルからデータを読み込む
-        user_data_dict = self.load_data_from_pickle(save_path)
+        # JSONファイルからデータを読み込む
+        user_data_dict = self.load_data_from_json(save_path)
 
         # txtファイルから新しいIDを読み込む
         new_user_data = self.load_data_from_txt()
 
-        # ピクルデータに存在しないIDを追加し、ランクも設定
-        updated_data = self.update_pickle_data(user_data_dict, new_user_data)
+        # JSONデータに存在しないIDを追加し、ランクも設定
+        updated_data = self.update_json_data(user_data_dict, new_user_data)
 
-        # データをpickleファイルに保存
-        self.save_data_to_pickle(updated_data, save_path)
+        # データをJSONファイルに保存
+        self.save_data_to_json(updated_data, save_path)
 
-        # ボールにピクルのパスを追加
+        # ボールにJSONのパスを追加
         self.one_time_world_instance.ball.all_data_dict["all_user_information_dict"] = save_path
 
         return "Completed"
 
-    def load_data_from_pickle(self, file_path):
+    def load_data_from_json(self, file_path):
         """
-        ピクルファイルからデータを読み込む関数。
+        JSONファイルからデータを読み込む関数。
         ファイルが存在しない場合は空の辞書を返す。
         """
         if os.path.exists(file_path):
-            with open(file_path, 'rb') as f:
-                return pickle.load(f)
+            with open(file_path, 'r') as f:
+                return json.load(f)
         else:
             return {}
 
@@ -69,9 +69,9 @@ class UpdateUIDPlayer(SuperPlayer):
         
         return user_data_dict
 
-    def update_pickle_data(self, existing_data, new_data):
+    def update_json_data(self, existing_data, new_data):
         """
-        ピクルデータに新しいIDを追加する関数。
+        JSONデータに新しいIDを追加する関数。
         既存のデータに存在しない新しいIDを追加し、user_rankも "visitor" に設定する。
         """
         for user_id, data in new_data.items():
@@ -83,24 +83,10 @@ class UpdateUIDPlayer(SuperPlayer):
                 }
         return existing_data
 
-
-    def save_data_to_pickle(self, data, file_path):
+    def save_data_to_json(self, data, file_path):
         """
-        データをpickleファイルに保存する関数。
+        データをJSONファイルに保存する関数。
         """
-        with open(file_path, 'wb') as f:
-            pickle.dump(data, f)
+        with open(file_path, 'w') as f:
+            json.dump(data, f, ensure_ascii=False, indent=4)
         print(f"データが {file_path} に保存されました。")
-
-# メモ:
-# このファイルは UpdateUIDPlayer クラスを含んでおり、
-# - user_ids.txt からユーザーIDを取得し、ランクを "visitor" に設定して、
-# - all_user_information_dict.pkl ファイルに存在しないIDを追加してpickleに保存します。
-# BallPassSchedulePatternを利用して、他のプレイヤー間でこの情報を共有できます。
-
-# 引用されたファイル:
-# - user_ids.txt : ユーザーIDが保存されているテキストファイル。各IDは改行で区切られています。
-# - all_user_information_dict.pkl : 全ユーザーID情報とランクが保存されるpickleファイル。このファイルは更新形式で使用されます。
-
-# 作成されたファイル:
-# - このファイル (UpdateUIDPlayer) : 上記の機能を実装したプレイヤーです。
