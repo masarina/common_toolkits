@@ -97,6 +97,13 @@ class BallObject:
                 [['FinalPlayer']]  # 例: 第二ミニスケジュール
             ]
             
+            
+        elif mode_name == "Mode_NewUserThenTask":
+            array_2d = [
+                [['FirstPlayer']],  # 例: 第一ミニスケジュール
+                [['
+                [['FinalPlayer']]  # 例: 第二ミニスケジュール
+            ]
 
         elif mode_name == "end":
             print("プログラムが完了しました。確認してください。")
