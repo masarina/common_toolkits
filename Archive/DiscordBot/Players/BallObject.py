@@ -37,7 +37,7 @@ class BallObject:
         
         # トレーニングデータをダウンロード
         if self.schedule_mode == 'Mode_First':
-            self.schedule_mode = 'Mode_DataDownload'
+            self.schedule_mode = 'Mode_Standby'
 
         # データをフォーマット
         elif self.schedule_mode == 'Mode_DataDownload':
@@ -73,10 +73,13 @@ class BallObject:
                 [['DebugPlayer'],['FinalPlayer']]  # 例: 第二ミニスケジュール
             ]
             
-        elif mode_name == "Mode_DataDownload":
+        elif mode_name == "Mode_Standby":
             array_2d = [
                 [['FirstPlayer']],  # 例: 第一ミニスケジュール
-                [['DownloadTrainingDataPlayer']],
+                [['OneSecondWeightPlayer']],
+                [['DiscordMemberTrackerPlayer']],
+                [['DiscordMessageTrackerPlayer']],
+                [['DiscordChannelTrackerPlayer']],
                 [['FinalPlayer']]  # 例: 第二ミニスケジュール
             ]
             
