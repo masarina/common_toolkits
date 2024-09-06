@@ -22,7 +22,7 @@ class DiscordMemberTrackerBot:
             data = {}  # ファイルがない場合は新しく作る
 
         # メンバーのIDをキーに、Trueに更新
-        data[str(member.id)] = {"joined": True, "username": member.name}
+        data["joined"] = True
 
         # 更新した内容をJSONファイルに書き込む
         with open(self.json_file, 'w') as file:
