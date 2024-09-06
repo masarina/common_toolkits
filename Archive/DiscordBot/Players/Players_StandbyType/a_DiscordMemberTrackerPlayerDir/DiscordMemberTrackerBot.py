@@ -15,7 +15,8 @@ class DiscordMemberTrackerBot:
 
     async def create_flag_for_new_member(self, member):
         # メンバー用のディレクトリを作成 (存在していなければ)
-        member_dir = "./flags"
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        member_dir = os.path.join(base_dir, "flags")
         os.makedirs(member_dir, exist_ok=True)
 
         # 現在時刻の .flag ファイルを作成 (追加型)
