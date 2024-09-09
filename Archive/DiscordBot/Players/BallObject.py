@@ -101,7 +101,10 @@ class BallObject:
         elif mode_name == "Mode_NewUserThenTask":
             array_2d = [
                 [['FirstPlayer']],  # 例: 第一ミニスケジュール
-                [['
+                [['LoadToBallPlayer_By_ChannelType']], # 新メンバーにチャンネルを作成してあげるため。
+                [['UpdateUIDPlayer']],
+                [['LoadToBallPlayer_By_MessageType']],
+                [[WelcomeNewPlayer']], # ウェルカムメッセージ
                 [['FinalPlayer']]  # 例: 第二ミニスケジュール
             ]
 
