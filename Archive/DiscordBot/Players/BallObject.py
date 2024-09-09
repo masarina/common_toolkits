@@ -109,6 +109,14 @@ class BallObject:
                 [['RankUpPlayer']], # visitorからnewUserにランクアップさせる
                 [['FinalPlayer']]  # 例: 第二ミニスケジュール
             ]
+            
+        elif mode_name == "Mode_NewMessageThenTask":
+            array2d = [
+                [['FirstPlayer']],
+                [['LoadToBallPlayer_By_MessageType']],
+                [['SendDaijinMessagePlayer']],
+                [['FinalPlayer']]
+            ]
 
         elif mode_name == "end":
             print("プログラムが完了しました。確認してください。")
