@@ -125,6 +125,8 @@ class BallObject:
                 [['ChannelCreatorCheckerPlayer']], # UIDとChIDの辞書を作る
                 [['LoadToBallPlayer_By_MessageType']], # MessageType全般の初期化
                 [['SendToChannelMakingUserPlayer']] # このチャンネル作成者にメッセージ。
+                [['FinalPlayer']]
+            ]
 
         elif mode_name == "end":
             print("プログラムが完了しました。確認してください。")
