@@ -28,6 +28,9 @@ class CreateChannelPlayer(SuperPlayer):
         """
         メインメソッド。非同期のcreate_channelを実行する。
         """
+        
+        # 作成するチャンネルについての設定
+        # 1つ前のプレイヤーで設定してください
         category_id = self.one_time_world_instance.ball.all_data_dict["category_id"]  # カテゴリIDを取得
         channel_name = self.one_time_world_instance.ball.all_data_dict["channel_name"]  # チャンネル名を取得
         discord_client = self.one_time_world_instance.ball.all_data_dict["bot_instance"]  # botインスタンスを取得
