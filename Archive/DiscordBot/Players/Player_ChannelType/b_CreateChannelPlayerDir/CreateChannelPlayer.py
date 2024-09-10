@@ -19,11 +19,16 @@ class CreateChannelPlayer(SuperPlayer):
         """
         guild = self.one_time_world_instance.ball.all_data_dict["bot_instance"].guilds[0]  # サーバーを取得
         category = discord.utils.get(guild.categories, id=category_id)  # カテゴリを取得
+        
         if category:
-            await guild.create_text_channel(name=channel_name, category=category)  # チャンネルを作成
+            existing_channel = discord.utils.get(category.channels, name=channel_name)  # 既存のチャンネルをチェック
+            if existing_channel:
+                print(f"チャンネル '{channel_name}' は既にカテゴリ '{category.name}' に存在しています。")
+            else:
+                await guild.create_text_channel(name=channel_name, category=category)  # チャンネルを作成
         else:
             print(f"カテゴリID {category_id} が見つかりません。")
-
+    
     def main(self):
         """
         メインメソッド。非同期のcreate_channelを実行する。
