@@ -84,7 +84,8 @@ class BallObject:
         if mode_name == "Mode_First":
             array_2d = [
                 [['FirstPlayer']],  # 例: 第一ミニスケジュール
-                [['DebugPlayer'],['FinalPlayer']]  # 例: 第二ミニスケジュール
+                [['DebugPlayer'],['InitDiscordBotPlayer']], # Discordボットをインスタンス化
+                [['FinalPlayer']]  # 例: 第二ミニスケジュール
             ]
             
         elif mode_name == "Mode_Standby":
