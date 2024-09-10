@@ -31,6 +31,10 @@ class CreateChannelPlayer(SuperPlayer):
         
         # 作成するチャンネルについての設定
         # 1つ前のプレイヤーで設定してください
+        
+        self.one_time_world_instance.ball.all_data_dict["categoryID_and_channelID_2dList_of_create_Channel"]
+        
+        
         category_id = self.one_time_world_instance.ball.all_data_dict["category_id"]  # カテゴリIDを取得
         channel_name = self.one_time_world_instance.ball.all_data_dict["channel_name"]  # チャンネル名を取得
         discord_client = self.one_time_world_instance.ball.all_data_dict["bot_instance"]  # botインスタンスを取得
