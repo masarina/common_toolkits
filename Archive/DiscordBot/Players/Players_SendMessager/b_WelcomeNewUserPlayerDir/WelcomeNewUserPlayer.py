@@ -42,7 +42,7 @@ class WelcomeNewUserPlayer(SuperPlayer):
         if not bot or not channel_id or not welcome_message:
             raise ValueError("必要なデータがball.all_data_dictから取得できませんでした。")
 
-        # メッセージを非同期で送信するためにrunメソッドを使用
+        # ハローメッセージを送信
         asyncio.run(one_time_world_instance.sendMessagePlayer.send_message(bot, channel_id, welcome_message))
 
 
