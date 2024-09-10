@@ -47,6 +47,8 @@ class WelcomeNewUserPlayer(SuperPlayer):
         asyncio.run(one_time_world_instance.sendMessagePlayer.send_message(bot, channel_id, welcome_message))
 
         # visitorさん専用のチャンネルを作成してあげる
+        self.one_time_world_instance.ball.all_data_dict["category_id"] =  # カテゴリIDを設定
+        self.one_time_world_instance.ball.all_data_dict["channel_name"] =  # チャンネル名を設定
         
 
         # ランクをnew_userにアップグレード
