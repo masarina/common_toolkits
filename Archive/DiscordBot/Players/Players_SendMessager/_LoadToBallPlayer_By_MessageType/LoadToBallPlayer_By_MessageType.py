@@ -1,5 +1,4 @@
 import os
-import ModelInference
 from Players_CommonPlayers.SuperPlayerDir.SuperPlayer import SuperPlayer
 
 class LoadToBallPlayer_By_MessageType(SuperPlayer):
@@ -20,10 +19,6 @@ class LoadToBallPlayer_By_MessageType(SuperPlayer):
         
         # カテゴリー【プロジェクト】のカテゴリID
         self.one_time_world_instance.ball.all_data_dict["categoryID_of_ProjectCategory"] = 1195503636453793792
-        
-        # 推論モデルのインスタンス化を登録
-        modelInference = ModelInference.ModelInference()
-        self.one_time_world_instance.ball.all_data_dict["modelInference"] = modelInference
         
 
         return "Completed"
