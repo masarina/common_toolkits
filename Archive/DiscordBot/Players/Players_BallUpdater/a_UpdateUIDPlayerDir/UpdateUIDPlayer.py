@@ -83,6 +83,12 @@ class UpdateUIDPlayer(SuperPlayer):
                     "user_rank": "visitor"
                 }
         return existing_data
+        
+    def create_channel_of_visitorUser(self):
+        self.one_time_world_instance.ball.all_data_dict["category_id"] =   # カテゴリIDを取得
+        self.one_time_world_instance.ball.all_data_dict["channel_name"]  # チャンネル名を取得
+        self.one_time_world_instance.ball.all_data_dict["bot_instance"]  # botインスタンスを取得
+        
 
     def save_data_to_json(self, data, file_path):
         """
