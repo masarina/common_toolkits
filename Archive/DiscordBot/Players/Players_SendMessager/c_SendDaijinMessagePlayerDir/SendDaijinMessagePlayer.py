@@ -24,9 +24,13 @@ class SendDaijinMessagePlayer(SuperPlayer):
             all_data_dict["modelInference"] = ModelInference()
         modelInference = all_data_dict["modelInference"]
         
-        # モデルの用意
+        # モデルの実行
+        output_text = self.infer_with_rinna(progress_report_message, modelInference)
         
-    def infer_with_rinna(self, input_text):
+        
+        return "Completed"
+        
+    def infer_with_rinna(self, input_text, model_inference):
         """
         rinnaモデルで推論するメソッド
         入力テキストが500文字を超えた場合、500文字ごとに区切って処理する。
@@ -44,10 +48,16 @@ class SendDaijinMessagePlayer(SuperPlayer):
             formated_response = rinna_response[:-2]
             responses.append(formated_response)
     
-        # 全てのチャンクの結果を結合して返す
-        return "".join(responses)
-
+        # 全てのチャンクの結果を統合
+        listType_response = "".join(responses)
         
+        # 整頓する
+        listType_response = model_inference.infer_with_rinna(f"崩れた箇条書き:「\\n{listType_response}\\n」\\n\\n崩れた箇条書きを再度フォーマットしました:「\\n")
+
+        # リストを見せて、推論させる。
+        response_from_Daijin = model_inference.infer_with_rinna(f"今回の出来高:「\\n{listType_response}\\n」\\n\\n心理学系、行動経済学系、関数型プログラミング系のかわいい大臣ちゃんからの4ポイントアドバイス！:「\\n")
+        
+        return response_from_Daijin
         
 
-        return "Completed"
+
