@@ -1,6 +1,6 @@
 import torch
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
-import ModelInference.ModelInference
+from ModelInference import ModelInference
 from Players_CommonPlayers.SuperPlayerDir.SuperPlayer import SuperPlayer
 
 class SendDaijinMessagePlayer(SuperPlayer):
