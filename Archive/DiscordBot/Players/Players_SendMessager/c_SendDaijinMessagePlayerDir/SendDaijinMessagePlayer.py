@@ -27,6 +27,9 @@ class SendDaijinMessagePlayer(SuperPlayer):
         # モデルの実行
         output_text = self.infer_with_rinna(progress_report_message, modelInference)
         
+        # 大臣からのメッセージをballに保存
+        self.one_time_world_instance.ball.all_data_dict["DaijinMessage_of_progressReport"] = output_text
+        
         
         return "Completed"
         
