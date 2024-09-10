@@ -105,7 +105,7 @@ class BallObject:
                 [['UpdateUIDPlayer']],
                 [['LoadToBallPlayer_By_MessageType']],
                 [['WelcomeNewUserPlayer']], # ウェルカムメッセージ
-                [['ChannelMakePlayer']], # 新メンバーにチャンネルを作ってあげる
+                [['CreateChannelPlayer']], # 新メンバーにチャンネルを作ってあげる
                 [['RankUpPlayer']], # visitorからnewUserにランクアップさせる
                 [['FinalPlayer']]  # 例: 第二ミニスケジュール
             ]
