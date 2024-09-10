@@ -18,6 +18,6 @@ class LoadToBallPlayer_By_MessageType(SuperPlayer):
         self.one_time_world_instance.ball.all_data_dict["all_user_information_dict"] = one_time_world_instance.updateUIDPlayer.save_path
         
         # カテゴリー【プロジェクト】のカテゴリID
-        one_time_world_instance.ball.all_data_dict["categoryID_of_ProjectCategory"] = 1195503636453793792
+        self.one_time_world_instance.ball.all_data_dict["categoryID_of_ProjectCategory"] = 1195503636453793792
 
         return "Completed"
