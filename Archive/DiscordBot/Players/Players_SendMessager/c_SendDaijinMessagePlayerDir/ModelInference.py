@@ -20,25 +20,6 @@ class ModelInference:
         return response
 
     @staticmethod
-    def infer_with_scibert(input_text):
-        """
-        論文を学習させたモデルで推論するスタティックメソッド
-        """
-        model_name = "allenai/scibert_scivocab_uncased"
-        tokenizer = AutoTokenizer.from_pretrained(model_name)
-        model = AutoModelForSequenceClassification.from_pretrained(model_name)
-
-        inputs = tokenizer(input_text, return_tensors="pt", truncation=True, padding=True, max_length=512)
-
-        with torch.no_grad():
-            outputs = model(**inputs)
-        
-        # 出力から最大のスコアを持つラベルを取得
-        logits = outputs.logits
-        predicted_class = torch.argmax(logits, dim=1).item()
-        return predicted_class
-
-    @staticmethod
     def translate_japanese_to_english(text):
         model_name = "Helsinki-NLP/opus-mt-ja-en"
         tokenizer = MarianTokenizer.from_pretrained(model_name)
