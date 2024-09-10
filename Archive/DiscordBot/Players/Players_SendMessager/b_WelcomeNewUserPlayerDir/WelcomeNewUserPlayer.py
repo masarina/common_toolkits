@@ -47,8 +47,13 @@ class WelcomeNewUserPlayer(SuperPlayer):
         asyncio.run(one_time_world_instance.sendMessagePlayer.send_message(bot, channel_id, welcome_message))
 
         # 次のプレイヤーでvisitorさん専用のチャンネルを作成してあげるので、その設定。
-        self.one_time_world_instance.ball.all_data_dict["category_id"] =  # カテゴリIDを設定
-        self.one_time_world_instance.ball.all_data_dict["channel_name"] =  # チャンネル名を設定
+        visitorUser_name = (await bot.fetch_user(target_user_id)).name
+
+        self.one_time_world_instance.ball.all_data_dict["category_id"] =  # カテゴリIDを設定(今回は【プロジェクト】のID)
+        self.one_time_world_instance.ball.all_data_dict["categoryID_and_channelID_dict_of_create_Channel"] = [
+            [1195503636453793792,f"{visitorUser_name}さん_作業場"],
+            [1195503636453793792, f"{visitorUser_name}さん_休憩場"]
+        ] # チャンネル名を設定
         
 
         # ランクをnew_userにアップグレード
