@@ -41,4 +41,7 @@ class CreateChannelPlayer(SuperPlayer):
             channel_name = category_channel[1] # チャンネル名を取得
             discord_client.loop.run_until_complete(self.create_channel(category_id, channel_name))  # 非同期メソッドを同期的に実行
 
+        # 設定をNoneで初期化
+        self.one_time_world_instance.ball.all_data_dict["categoryID_and_channelID_2dList_of_create_Channel"] = None
+        
         return "Completed"
