@@ -45,6 +45,8 @@ class WelcomeNewUserPlayer(SuperPlayer):
         # ハローメッセージを送信
         asyncio.run(one_time_world_instance.sendMessagePlayer.send_message(bot, channel_id, welcome_message))
 
+        # visitorさん専用のチャンネルを作成してあげる
+        
 
         # ランクをnew_userにアップグレード
         user_data[target_user_id]["user_rank"] = "new_user"
