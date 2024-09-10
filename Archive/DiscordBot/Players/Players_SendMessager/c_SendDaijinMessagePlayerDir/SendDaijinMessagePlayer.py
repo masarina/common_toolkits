@@ -18,7 +18,7 @@ class SendDaijinMessagePlayer(SuperPlayer):
         # 初期化
         all_data_dict = self.one_time_world_instance.ball.all_data_dict
         
-        # モデルツールの用意
+        # モデルツールのインスタンス化(2回目以降はインスタンスを取得(処理軽量化の為))
         if all_data_dict["modelInference"] == None:
             all_data_dict["modelInference"] = ModelInference()
         modelInference = all_data_dict["modelInference"]
