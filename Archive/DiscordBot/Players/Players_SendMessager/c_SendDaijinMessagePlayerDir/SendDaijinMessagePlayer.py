@@ -2,13 +2,13 @@ import torch
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
 from Players_CommonPlayers.SuperPlayerDir.SuperPlayer import SuperPlayer
 
-class RinnaGPT2DecodePlayer(SuperPlayer):
+class SendDaijinMessagePlayer(SuperPlayer):
     def __init__(self):
         super().__init__()
         self.my_name = None
 
     def return_my_name(self):
-        return "RinnaGPT2DecodePlayer"
+        return "SendDaijinMessagePlayer"
 
     def main(self):
         """
