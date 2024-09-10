@@ -20,5 +20,8 @@ class LoadToBallPlayer_By_MessageType(SuperPlayer):
         # カテゴリー【プロジェクト】のカテゴリID
         self.one_time_world_instance.ball.all_data_dict["categoryID_of_ProjectCategory"] = 1195503636453793792
         
+        # 推論モデルを格納する場所の初期化
+        self.one_time_world_instance.ball.all_data_dict["modelInference"] = None
+        
 
         return "Completed"
