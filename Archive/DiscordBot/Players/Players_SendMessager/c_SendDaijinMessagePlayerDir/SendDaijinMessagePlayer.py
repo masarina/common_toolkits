@@ -2,25 +2,25 @@ import torch
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
 from Players_CommonPlayers.SuperPlayerDir.SuperPlayer import SuperPlayer
 
-class SendDaijinMessagePlayer(SuperPlayer):
+class RinnaGPT2DecodePlayer(SuperPlayer):
     def __init__(self):
         super().__init__()
         self.my_name = None
 
     def return_my_name(self):
-        return "SendDaijinMessagePlayer"
+        return "RinnaGPT2DecodePlayer"
 
     def main(self):
         """
         GPT-2を使って会話をするためのプレイヤー。
-        """
+        """       
         # モデルとトークナイザーをTransformersから取得
         model_name = "rinna/japanese-gpt2-medium"  # 日本語モデルを指定
         tokenizer = GPT2Tokenizer.from_pretrained(model_name)
         model = GPT2LMHeadModel.from_pretrained(model_name)
 
         # 入力テキストを用意
-        input_text = "こんにちは、調子はどう？"
+        input_text = self.one_time_world_instance.ball.all_data_dict["inputText_of_gpt2_rinna"]
 
         # テキストをトークン化
         inputs = tokenizer(input_text, return_tensors="pt")
@@ -32,5 +32,7 @@ class SendDaijinMessagePlayer(SuperPlayer):
         # トークンをテキストに戻す
         response = tokenizer.decode(outputs[0], skip_special_tokens=True)
 
-        print(f"GPT-2の返答: {response}")
+        # 出力結果をall_data_dictに登録
+        self.one_time_world_instance.ball.all_data_dict["gpt2_answer"] = f"{response}"
+        
         return "Completed"
