@@ -14,7 +14,7 @@ class ModelInference:
         inputs = tokenizer(input_text, return_tensors="pt")
 
         with torch.no_grad():
-            outputs = model.generate(inputs["input_ids"], max_length=100, num_return_sequences=1)
+            outputs = model.generate(inputs["input_ids"], max_length=1024, num_return_sequences=1)
 
         response = tokenizer.decode(outputs[0], skip_special_tokens=True)
         return response
