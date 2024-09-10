@@ -2,8 +2,10 @@ import torch
 from transformers import GPT2LMHeadModel, GPT2Tokenizer, AutoModelForSequenceClassification, AutoTokenizer
 
 class ModelInference:
-    @staticmethod
-    def infer_with_rinna(input_text):
+    def __init__(self):
+        pass
+        
+    def infer_with_rinna(self, input_text):
         """
         rinnaモデルで推論するスタティックメソッド
         """
@@ -19,8 +21,7 @@ class ModelInference:
         response = tokenizer.decode(outputs[0], skip_special_tokens=True)
         return response
 
-    @staticmethod
-    def translate_japanese_to_english(text):
+    def translate_japanese_to_english(self, text):
         model_name = "Helsinki-NLP/opus-mt-ja-en"
         tokenizer = MarianTokenizer.from_pretrained(model_name)
         model = MarianMTModel.from_pretrained(model_name)
@@ -30,8 +31,7 @@ class ModelInference:
         translated_text = tokenizer.decode(translated[0], skip_special_tokens=True)
         return translated_text
 
-    @staticmethod
-    def translate_english_to_japanese(text):
+    def translate_english_to_japanese(self, text):
         model_name = "Helsinki-NLP/opus-mt-en-ja"
         tokenizer = MarianTokenizer.from_pretrained(model_name)
         model = MarianMTModel.from_pretrained(model_name)
