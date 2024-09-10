@@ -47,10 +47,11 @@ class WelcomeNewUserPlayer(SuperPlayer):
         asyncio.run(one_time_world_instance.sendMessagePlayer.send_message(bot, channel_id, welcome_message))
 
         # 次のプレイヤーでvisitorさん専用のチャンネルを作成してあげるので、その設定。
+        categoryID ＝ one_time_world_instance.ball.all_data_dict["categoryID_of_ProjectCategory"]
         visitorUser_name = (await bot.fetch_user(target_user_id)).name
         self.one_time_world_instance.ball.all_data_dict["categoryID_and_channelID_2dList_of_create_Channel"] = [
-            [1195503636453793792,f"{visitorUser_name}さん_作業場"],
-            [1195503636453793792, f"{visitorUser_name}さん_休憩場"]
+            [categoryID,f"{visitorUser_name}さん_作業場"],
+            [categoryID, f"{visitorUser_name}さん_休憩場"]
         ] # 作成するチャンネルを[カテゴリID,チャンネル名]
         
 
