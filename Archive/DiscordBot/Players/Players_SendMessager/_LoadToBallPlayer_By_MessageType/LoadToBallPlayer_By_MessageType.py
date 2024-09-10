@@ -11,10 +11,11 @@ class LoadToBallPlayer_By_MessageType(SuperPlayer):
 
     def main(self):
         """
-        JSONファイルのパスをball.all_data_dictに追加するプレイヤー。
+        MessageTypeメソッド群のイニシャライザ的存在
         """
         
         # ball.all_data_dictにパスを追加
         self.one_time_world_instance.ball.all_data_dict["all_user_information_dict"] = one_time_world_instance.updateUIDPlayer.save_path
+        one_time_world_instance.ball.all_data_dict["categoryID_of_ProjectCategory"] = 1195503636453793792
 
         return "Completed"
