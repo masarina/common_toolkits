@@ -14,7 +14,8 @@ class WelcomeNewUserPlayer(SuperPlayer):
     def main(self):
         """
         visitorとしてマークされているユーザーに
-        ハローメッセージを送信し、その後にユーザーランクを
+        ハローメッセージを送信、visitorユーザ専用チャンネルの作成、
+        その後にユーザーランクを
         'new_user'にアップグレードします。
         """
         # user情報の辞書を取得
