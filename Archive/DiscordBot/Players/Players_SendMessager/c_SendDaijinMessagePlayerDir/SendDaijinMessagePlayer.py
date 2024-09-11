@@ -39,7 +39,6 @@ class SendDaijinMessagePlayer(SuperPlayer):
         # .items()で辞書のキーと値のペアを取得する
         if UID_MESSE_dict:
             report_user_id, progress_report_message = UID_MESSE_dict.popitem()
-            print(f"取得したペア: {user_id} - {message}")
         else:
             print("辞書が空です。")
         
