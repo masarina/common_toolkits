@@ -55,7 +55,7 @@ class SendDaijinMessagePlayer(SuperPlayer):
         listType_response = "".join(responses)
         
         # 整頓する
-        listType_response = model_inference.infer_with_rinna(f"崩れた箇条書き:「\\n{listType_response}\\n」\\n\\n崩れた箇条書きを再度フォーマットしました:「\\n")
+        listType_response = (model_inference.infer_with_rinna(f"崩れた箇条書き:「\\n{listType_response}\\n」\\n\\n崩れた箇条書きを再度フォーマットしました:「\\n"))[:-2]
 
         # リストを見せて、推論させる。
         response_from_Daijin = (model_inference.infer_with_rinna(f"今回の出来高:「\\n{listType_response}\\n」\\n\\n心理学系、行動経済学系、関数型プログラミング系のかわいい大臣ちゃんからの4ポイントアドバイス！:「\\n"))[:-2]
