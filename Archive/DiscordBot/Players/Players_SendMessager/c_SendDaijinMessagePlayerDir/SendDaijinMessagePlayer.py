@@ -62,7 +62,7 @@ class SendDaijinMessagePlayer(SuperPlayer):
         入力テキストが500文字を超えた場合、500文字ごとに区切って処理する。
         """
         # メッセージ送信者の名前を取得
-        reporter_name = self.get_user_name_by_id(
+        reporter_name = self.get_user_name_by_id(report_user_id)
         
         # 500文字ごとにテキストを分割
         chunk_size = 500
@@ -84,10 +84,10 @@ class SendDaijinMessagePlayer(SuperPlayer):
         listType_response = (model_inference.infer_with_rinna(f"崩れた箇条書き:「\\n{listType_response}\\n」\\n\\n崩れた箇条書きを再度フォーマットしました:「\\n"))[:-2]
         
         # 内容の題名を作る
-        report_name = f"# {(model_inference.infer_with_rinna(f"実行した事柄:「\\n{listType_response}\\n」\\n\\nそうですね、あなたが今日頑張って実行したこのタスクリストに題名を付けるとするならば、次のようになるでしょう！:「\\n"))[:-2]}"
+        report_name = f"# {(model_inference.infer_with_rinna(f"実行した事柄:「\\n{listType_response}\\n」\\n\\nそうですね、{reporter_name}さんが今日頑張って実行したこのタスクリストに題名を付けるとするならば、次のようになるでしょう！:「\\n"))[:-2]}"
 
         # リストを見せて、推論させる。
-        response_from_Daijin = (model_inference.infer_with_rinna(f"今回の出来高:「\\n{listType_response}\\n」\\n\\n心理学系、行動経済学系、関数型プログラミング系のかわいい大臣ちゃんからの4ポイントアドバイス！:「\\n"))[:-2]}"
+        response_from_Daijin = (model_inference.infer_with_rinna(f"ペンネーム {reporter_name} さん の出来高:「\\n{listType_response}\\n」\\n\\n心理学系、行動経済学系、関数型プログラミング系で、かわいい大臣ちゃんからの4ポイントアドバイス！:「\\n"))[:-2]}"
         
         return response_from_Daijin
         
