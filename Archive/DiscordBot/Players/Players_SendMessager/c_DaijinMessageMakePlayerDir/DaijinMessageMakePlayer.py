@@ -1,6 +1,7 @@
 import torch
 import json
 import subprocess
+import asyncio
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
 from ModelInference import ModelInference
 from Players_CommonPlayers.SuperPlayerDir.SuperPlayer import SuperPlayer
@@ -25,6 +26,7 @@ class DaijinMessageMakePlayer(SuperPlayer):
         ## 変数パスの簡易化
         all_data_dict = self.one_time_world_instance.ball.all_data_dict 
         bot_instance = all_data_dict["bot_instance"] # botインタンスを取得
+        
         # このファイルが保存されているディレクトリパスを取得
         thisDir_path = os.path.dirname(os.path.abspath(__file__))
         
@@ -40,7 +42,7 @@ class DaijinMessageMakePlayer(SuperPlayer):
             # 日付時刻をキーにして、ユーザーID、チャンネルID、メッセージ内容を取得
             timestamp, message_data = messages_dict.popitem()
             report_user_id = message_data['user_id']
-            channel_id = message_data['channel_id']
+            reported_channels_id = message_data['channel_id']
             progress_report_message = message_data['message']
         else:
             print("メッセージ辞書が空です。")
@@ -51,8 +53,13 @@ class DaijinMessageMakePlayer(SuperPlayer):
             all_data_dict["modelInference"] = ModelInference()
         modelInference = all_data_dict["modelInference"]
         
-        # モデルの実行
-        output_text = self.infer_with_rinna(progress_report_message, modelInference, report_user_id)
+        # モデルの実行、テキストの作成
+        output_text, report_name = self.infer_with_rinna(progress_report_message, modelInference, report_user_id)
+        
+        # サブテキストの作成
+        reported_channels_name = self.get_channel_name_by_id(all_data_dict["bot_instance"], reported_channels_id)
+        reported_user_name = self.get_user_name_by_if(all_data_dict["bot_instance"], report_user_id)
+        sub_text = f"============================\n# {reported_channels_name}\n【報告者：{reported_user_name} より】\n\n[報告内容]\n# ```{report_name}```\n```{progress_report_message}```\n============================"
         
         # 大臣からのメッセージ、メッセージの送信先チャンネルIDをballに保存
         self.one_time_world_instance.ball.all_data_dict["send_message_player_message"] = output_text
@@ -94,7 +101,7 @@ class DaijinMessageMakePlayer(SuperPlayer):
         # リストを見せて、推論させる。
         response_from_Daijin = (model_inference.infer_with_rinna(f"ペンネーム {reporter_name} さん の出来高:「\\n{listType_response}\\n」\\n\\n心理学系、行動経済学系、関数型プログラミング系で、かわいい大臣ちゃんからの4ポイントアドバイス！:「\\n"))[:-2]
         
-        return response_from_Daijin
+        return response_from_Daijin, report_name
         
     def get_user_name_by_id(self, bot, user_id):
         """
@@ -107,5 +114,26 @@ class DaijinMessageMakePlayer(SuperPlayer):
     
         # 非同期関数を同期的に実行して、ユーザー名を取得
         return asyncio.run(fetch_user_name())
+
+
+
+    def get_channel_name_by_id(self, bot_instance, channel_id):
+        """
+        チャンネルIDをもとに、チャンネル名を同期的に取得するメソッド。
+        引数：
+        - bot_instance: DiscordのBotインスタンス
+        - channel_id: 取得したいチャンネルのID
+        """
+    
+        async def fetch_channel_name():
+            # チャンネルIDからチャンネルオブジェクトを取得
+            channel = bot_instance.get_channel(channel_id)
+            if channel:
+                return channel.name
+            else:
+                raise ValueError(f"チャンネルID {channel_id} に該当するチャンネルが見つかりません。")
+    
+        # 非同期関数を同期的に実行して、チャンネル名を取得
+        return asyncio.run(fetch_channel_name())
 
 
