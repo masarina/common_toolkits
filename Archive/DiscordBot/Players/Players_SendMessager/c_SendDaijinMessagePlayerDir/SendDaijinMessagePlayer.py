@@ -12,7 +12,7 @@ class SendDaijinMessagePlayer(SuperPlayer):
         
         # MessageKeeper.pyを並行実行
         messageKeeper_path = f"{os.path.dirname(os.path.abspath(__file__))}/MessageKeeper.py"
-        subprocess.Popen(['python',messageKeeperpath])
+        subprocess.Popen(['python',messageKeeper_path])
 
     def return_my_name(self):
         return "SendDaijinMessagePlayer"
