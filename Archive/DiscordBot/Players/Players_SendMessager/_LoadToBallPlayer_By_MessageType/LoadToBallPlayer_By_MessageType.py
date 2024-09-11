@@ -23,5 +23,8 @@ class LoadToBallPlayer_By_MessageType(SuperPlayer):
         # 推論モデルを格納する場所の初期化
         self.one_time_world_instance.ball.all_data_dict["modelInference"] = None
         
+        # 【私達の進捗報告】のIDを保存
+        self.one_time_world_instance.ball.all_data_dict["channelID_【私達の進捗報告】"] = 1195505631164108892
+        
 
         return "Completed"
