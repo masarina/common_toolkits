@@ -21,15 +21,17 @@ class SendMessagePlayer(SuperPlayer):
 
         # ballからbotインスタンス、チャンネルID、メッセージを取得
         bot = self.one_time_world_instance.ball.all_data_dict.get("send_message_player_bot_instance")
-        channel_id = self.one_time_world_instance.ball.all_data_dict.get("send_message_player_channel_id")
-        message = self.one_time_world_instance.ball.all_data_dict.get("send_message_player_message")
-
+        ChID_MESSE_2dList = self.one_time_world_instance.ball.all_data_dict.get("sendMessage_2dList_CHANNELID_MESSE")
+         
         # 必要なデータが取得できなかった場合のエラーチェック
-        if not bot or not channel_id or not message:
+        if not bot or not ChID_MESSE_2dList:
             raise ValueError("必要なデータがball.all_data_dictから取得できませんでした。")
 
         # 非同期処理を実行してメッセージを送信
-        asyncio.run(self.send_message(bot, channel_id, message))
+        for pair in ChID_MESSE_2dList:
+            channel_id = pair[0]
+            message = pair[1]
+            asyncio.run(self.send_message(bot, channel_id, message))
 
         return "Completed"
 
