@@ -115,7 +115,8 @@ class BallObject:
             array2d = [
                 [['FirstPlayer']],
                 [['LoadToBallPlayer_By_MessageType']],
-                [['SendDaijinMessagePlayer']],
+                [['DaijinMessageMakePlayer']],
+                [['
                 [['FinalPlayer']]
             ]
             
