@@ -16,5 +16,8 @@ class LoadToBallPlayer_By_ChannelType(SuperPlayer):
         
         # ball.all_data_dictにパスを追加
         self.one_time_world_instance.ball.all_data_dict["all_user_information_dict"] = one_time_world_instance.updateUIDPlayer.save_path
+        
+        # チャンネルと、チャンネル設立者の辞書のパスをall_data_dictに登録
+        self.one_time_world_instance.ball.all_data_dict["channel_creator_info_json_path"] = channelCreatorCheckerPlayer.channel_creator_info_json_path
 
         return "Completed"
