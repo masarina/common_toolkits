@@ -54,7 +54,7 @@ class DaijinMessageMakePlayer(SuperPlayer):
         modelInference = all_data_dict["modelInference"]
         
         # モデルの実行、テキストの作成
-        output_text, report_name = self.infer_with_rinna(progress_report_message, modelInference, report_user_id)
+        decoded_text, report_name = self.infer_with_rinna(progress_report_message, modelInference, report_user_id)
         
         # サブテキストの作成
         reported_channels_name = self.get_channel_name_by_id(all_data_dict["bot_instance"], reported_channels_id)
