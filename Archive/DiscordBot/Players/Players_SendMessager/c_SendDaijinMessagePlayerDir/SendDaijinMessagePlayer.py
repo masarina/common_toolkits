@@ -24,13 +24,24 @@ class SendDaijinMessagePlayer(SuperPlayer):
         # 初期化
         ## 変数パスの簡易化
         all_data_dict = self.one_time_world_instance.ball.all_data_dict 
-        ## このファイルが保存されているディレクトリパスを取得
-        thisDir_path = os.path.dirname(os.path.abspath(__file__))
-        ## ユーザIDとメッセージのペアを1つ取得
-        json_path = os.path.json(thisDir_path,messages.json)
-        with open(json_path, 'r') as json-file:
-            UID_MESSE_dict = json.load(json_file)
         
+        # このファイルが保存されているディレクトリパスを取得
+        thisDir_path = os.path.dirname(os.path.abspath(__file__))
+        
+        # JSONファイルのパスを設定
+        json_path = os.path.join(thisDir_path, 'messages.json')
+        
+        # JSONファイルを開いて辞書として読み込む
+        with open(json_path, 'r') as json_file:
+            UID_MESSE_dict = json.load(json_file)
+
+        # 辞書からユーザIDとメッセージのペアを一つ取得
+        # .items()で辞書のキーと値のペアを取得する
+        if UID_MESSE_dict:
+            user_id, message = UID_MESSE_dict.popitem()
+            print(f"取得したペア: {user_id} - {message}")
+        else:
+            print("辞書が空です。")
         progress_report_message = all_data_dict["progress_report_message"] # このKeyまだ未作成(2024-09-11)
         
         # モデルツールのインスタンス化(2回目以降はインスタンスを取得(処理軽量化の為))
