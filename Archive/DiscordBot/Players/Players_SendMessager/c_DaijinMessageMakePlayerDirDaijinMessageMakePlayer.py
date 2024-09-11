@@ -5,7 +5,7 @@ from transformers import GPT2LMHeadModel, GPT2Tokenizer
 from ModelInference import ModelInference
 from Players_CommonPlayers.SuperPlayerDir.SuperPlayer import SuperPlayer
 
-class SendDaijinMessagePlayer(SuperPlayer):
+class DaijinMessageMakePlayer(SuperPlayer):
     def __init__(self):
         super().__init__()
         self.my_name = None
@@ -15,7 +15,7 @@ class SendDaijinMessagePlayer(SuperPlayer):
         subprocess.Popen(['python',messageKeeper_path])
 
     def return_my_name(self):
-        return "SendDaijinMessagePlayer"
+        return "DaijinMessageMakePlayer"
 
     def main(self):
         """
