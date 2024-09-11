@@ -1,4 +1,5 @@
 import torch
+import subprocess
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
 from ModelInference import ModelInference
 from Players_CommonPlayers.SuperPlayerDir.SuperPlayer import SuperPlayer
@@ -7,6 +8,10 @@ class SendDaijinMessagePlayer(SuperPlayer):
     def __init__(self):
         super().__init__()
         self.my_name = None
+        
+        # MessageKeeper.pyを並行実行
+        messageKeeper_path = f"{os.path.dirname(os.path.abspath(__file__))}/MessageKeeper.py"
+        subprocess.Popen(['python',messageKeeperpath])
 
     def return_my_name(self):
         return "SendDaijinMessagePlayer"
