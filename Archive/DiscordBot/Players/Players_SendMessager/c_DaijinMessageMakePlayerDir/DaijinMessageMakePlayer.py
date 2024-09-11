@@ -48,23 +48,28 @@ class DaijinMessageMakePlayer(SuperPlayer):
             print("メッセージ辞書が空です。")
             return "No messages"
         
-        # モデルツールのインスタンス化(2回目以降はインスタンスを取得(処理軽量化の為))
-        if all_data_dict["modelInference"] == None:
-            all_data_dict["modelInference"] = ModelInference()
-        modelInference = all_data_dict["modelInference"]
+        # ｢メッセージ送信者、チャンネル所持者｣が一致したならば以下を実行
+        reported_user_id = reported_user_id # メッセージ送信者のIDを取得
+        # 送信されたチャンネルの所持者のIDを取得
+        if 
         
-        # モデルの実行、テキストの作成
-        decoded_text, report_name = self.infer_with_rinna(progress_report_message, modelInference, report_user_id)
-        
-        # サブテキストの作成
-        reported_channels_name = self.get_channel_name_by_id(all_data_dict["bot_instance"], reported_channels_id)
-        reported_user_name = self.get_user_name_by_if(all_data_dict["bot_instance"], report_user_id)
-        sub_text = f"============================\n# {reported_channels_name}\n【報告者：{reported_user_name} より】\n\n[報告内容]\n# ```{report_name}```\n```{progress_report_message}```\n============================"
-        
-        # 大臣からのメッセージ、メッセージの送信先チャンネルIDをballに保存
-        self.one_time_world_instance.ball.all_data_dict["send_message_player_message"] = output_text
-        self.one_time_world_instance.ball.all_data_dict["send_message_player_channel_id"] = all_data_dict["channelID_【私達の進捗報告】"]
-        
+            # モデルツールのインスタンス化(2回目以降はインスタンスを取得(処理軽量化の為))
+            if all_data_dict["modelInference"] == None:
+                all_data_dict["modelInference"] = ModelInference()
+            modelInference = all_data_dict["modelInference"]
+            
+            # モデルの実行、テキストの作成
+            decoded_text, report_name = self.infer_with_rinna(progress_report_message, modelInference, report_user_id)
+            
+            # サブテキストの作成
+            reported_channels_name = self.get_channel_name_by_id(all_data_dict["bot_instance"], reported_channels_id)
+            reported_user_name = self.get_user_name_by_if(all_data_dict["bot_instance"], report_user_id)
+            sub_text = f"============================\n# {reported_channels_name}\n【報告者：{reported_user_name} より】\n\n[報告内容]\n# ```{report_name}```\n```{progress_report_message}```\n============================"
+            
+            # 大臣からのメッセージ、メッセージの送信先チャンネルIDをballに保存
+            self.one_time_world_instance.ball.all_data_dict["send_message_player_message"] = output_text
+            self.one_time_world_instance.ball.all_data_dict["send_message_player_channel_id"] = all_data_dict["channelID_【私達の進捗報告】"]
+            
         
         return "Completed"
         
