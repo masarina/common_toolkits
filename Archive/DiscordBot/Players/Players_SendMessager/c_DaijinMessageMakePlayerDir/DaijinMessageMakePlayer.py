@@ -48,9 +48,16 @@ class DaijinMessageMakePlayer(SuperPlayer):
             print("メッセージ辞書が空です。")
             return "No messages"
         
-        # ｢メッセージ送信者、チャンネル所持者｣が一致したならば以下を実行
+        # ｢メッセージ送信者、チャンネル所持者｣が一致したならば、メッセージ処理を実行。
+        updateUIDPlayer = self.one_time_world_instance.updateUIDPlayer # インスタンスの取得（ツールとして）
         reported_user_id = reported_user_id # メッセージ送信者のIDを取得
+        
         # 送信されたチャンネルの所持者のIDを取得
+        users_data_dict = updateUIDPlayer.load_data_from_json(all_data_dict["all_user_information_dict"]) 
+        for user_id, user_data_dict in users_data_dict.items():
+            # 全てのユーザーのuser_data_dict内のチャンネルIDを検索
+        
+        
         if 
         
             # モデルツールのインスタンス化(2回目以降はインスタンスを取得(処理軽量化の為))
