@@ -54,10 +54,9 @@ class DaijinMessageMakePlayer(SuperPlayer):
         # モデルの実行
         output_text = self.infer_with_rinna(progress_report_message, modelInference, report_user_id)
         
-        # 大臣からのメッセージをballに保存
+        # 大臣からのメッセージ、メッセージの送信先チャンネルIDをballに保存
         self.one_time_world_instance.ball.all_data_dict["send_message_player_message"] = output_text
-        
-        self.one_time_world_instance.ball.all_data_dict["send_message_player_channel_id"] = 
+        self.one_time_world_instance.ball.all_data_dict["send_message_player_channel_id"] = all_data_dict["channelID_【私達の進捗報告】"]
         
         
         return "Completed"
