@@ -9,6 +9,7 @@ class ChannelCreatorCheckerPlayer(SuperPlayer):
         super().__init__()
         self.my_name = "ChannelCreatorCheckerPlayer"
         self.channel_creator_data_path = f"{os.path.dirname(os.path.abspath(__file__))}/channel_user_data.json"
+        self.channel_creator_info_json_path = f"{os.path.dirname(os.path.abspath(__file__))}/channel_creator_info.json"
 
     def return_my_name(self):
         return self.my_name
@@ -76,7 +77,7 @@ class ChannelCreatorCheckerPlayer(SuperPlayer):
         """
         チャンネル作成者の情報を新しいJSONファイルに更新するメソッド。
         """
-        channel_creator_info_json_path = f"{os.path.dirname(os.path.abspath(__file__))}/channel_creator_info.json"
+        channel_creator_info_json_path = self.channel_creator_info_json_path
 
         # 既存のデータを読み込み、無ければ新しく作成
         if os.path.exists(channel_creator_info_json_path):
