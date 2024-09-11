@@ -1,6 +1,7 @@
 import os
 import json
 from discord.ext import commands
+from datetime import datetime
 
 class MessageKeeper:
     def __init__(self):
@@ -20,8 +21,15 @@ class MessageKeeper:
         if message.author == self.bot.user:
             return
         
-        # ユーザーIDとメッセージのペアを辞書に追加
-        self.messages_dict[message.author.id] = message.content
+        # 日付時刻を取得
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        
+        # ユーザーID、チャンネルID、メッセージ内容を辞書に追加
+        self.messages_dict[timestamp] = {
+            "user_id": message.author.id,
+            "channel_id": message.channel.id,
+            "message": message.content
+        }
 
         # JSONファイルに追記して保存
         self.save_to_json()
