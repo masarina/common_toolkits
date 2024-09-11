@@ -24,7 +24,7 @@ class SendDaijinMessagePlayer(SuperPlayer):
         # 初期化
         ## 変数パスの簡易化
         all_data_dict = self.one_time_world_instance.ball.all_data_dict 
-        
+        bot_instance = all_data_dict["bot_instance"] # botインタンスを取得
         # このファイルが保存されているディレクトリパスを取得
         thisDir_path = os.path.dirname(os.path.abspath(__file__))
         
@@ -48,7 +48,7 @@ class SendDaijinMessagePlayer(SuperPlayer):
         modelInference = all_data_dict["modelInference"]
         
         # モデルの実行
-        output_text = self.infer_with_rinna(progress_report_message, modelInference)
+        output_text = self.infer_with_rinna(progress_report_message, modelInference, report_user_id)
         
         # 大臣からのメッセージをballに保存
         self.one_time_world_instance.ball.all_data_dict["DaijinMessage_of_progressReport"] = output_text
@@ -56,11 +56,14 @@ class SendDaijinMessagePlayer(SuperPlayer):
         
         return "Completed"
         
-    def infer_with_rinna(self, input_text, model_inference):
+    def infer_with_rinna(self, input_text, model_inference, report_user_id):
         """
         rinnaモデルで推論するメソッド
         入力テキストが500文字を超えた場合、500文字ごとに区切って処理する。
         """
+        # メッセージ送信者の名前を取得
+        reporter_name = self.get_user_name_by_id(
+        
         # 500文字ごとにテキストを分割
         chunk_size = 500
         input_chunks = [input_text[i:i + chunk_size] for i in range(0, len(input_text), chunk_size)]
@@ -88,5 +91,16 @@ class SendDaijinMessagePlayer(SuperPlayer):
         
         return response_from_Daijin
         
+    def get_user_name_by_id(self, bot, user_id):
+        """
+        DiscordのBotインスタンスとユーザーIDを引数にとり、
+        ユーザーIDを元に、そのユーザーの名前を取得して返す。
+        """
+        async def fetch_user_name():
+            user = await bot.fetch_user(user_id)
+            return user.name
+    
+        # 非同期関数を同期的に実行して、ユーザー名を取得
+        return asyncio.run(fetch_user_name())
 
 
