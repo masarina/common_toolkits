@@ -116,11 +116,11 @@ class BallObject:
                 [['FirstPlayer']],
                 [['LoadToBallPlayer_By_MessageType']],
                 [['DaijinMessageMakePlayer']],
-                [['
+                [['SendMessagePlayer']],
                 [['FinalPlayer']]
             ]
             
-        elif mode_name == "Mode__NewChannelThenTask":
+        elif mode_name == "Mode_NewChannelThenTask":
             array2d = [
                 [['FirstPlayer']],
                 [['LoadToBallPlayer_By_ChannelType']], # ChannelType全般の初期化
