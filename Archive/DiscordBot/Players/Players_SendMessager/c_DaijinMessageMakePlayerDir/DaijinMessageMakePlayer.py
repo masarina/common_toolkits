@@ -33,14 +33,18 @@ class DaijinMessageMakePlayer(SuperPlayer):
         
         # JSONファイルを開いて辞書として読み込む
         with open(json_path, 'r') as json_file:
-            UID_MESSE_dict = json.load(json_file)
+            messages_dict = json.load(json_file)
 
-        # 辞書からユーザIDとメッセージのペアを一つ取得
-        # .items()で辞書のキーと値のペアを取得する
-        if UID_MESSE_dict:
-            report_user_id, progress_report_message = UID_MESSE_dict.popitem()
+        # 辞書からデータを一つ取得
+        if messages_dict:
+            # 日付時刻をキーにして、ユーザーID、チャンネルID、メッセージ内容を取得
+            timestamp, message_data = messages_dict.popitem()
+            report_user_id = message_data['user_id']
+            channel_id = message_data['channel_id']
+            progress_report_message = message_data['message']
         else:
-            print("辞書が空です。")
+            print("メッセージ辞書が空です。")
+            return "No messages"
         
         # モデルツールのインスタンス化(2回目以降はインスタンスを取得(処理軽量化の為))
         if all_data_dict["modelInference"] == None:
