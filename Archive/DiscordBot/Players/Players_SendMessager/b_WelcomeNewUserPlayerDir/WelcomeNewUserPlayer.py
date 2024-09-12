@@ -54,6 +54,8 @@ class WelcomeNewUserPlayer(SuperPlayer):
             [categoryID, f"{visitorUser_name}さん_休憩場"]
         ] # 作成するチャンネルを[カテゴリID,チャンネル名]
         
+        # 作成したチャンネルのチャンネルIDをall_user_infoのjsonに登録
+        # (未作成)
 
         # ランクをnew_userにアップグレード
         user_data[target_user_id]["user_rank"] = "new_user"
