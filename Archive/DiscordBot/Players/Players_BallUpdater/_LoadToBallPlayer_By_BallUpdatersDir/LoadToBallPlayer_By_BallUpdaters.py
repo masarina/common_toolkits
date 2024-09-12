@@ -21,7 +21,8 @@ class LoadToBallPlayer_By_BallUpdaters(SuperPlayer):
         """ all_user_information_dictの チャンネルID-UIDのペア情報 の更新 """
         # チャンネルと、チャンネル設立者の辞書のパスを取得
         created_channelID_and_userID_json_path = self.one_time_world_instance.channelCreatorCheckerPlayer.channel_creator_info_json_path
-        
+        #jsonを更新
+        self.update_channelIDInfo(self.one_time_world_instance.ball.all_data_dict["all_user_information_dict"], created_channelID_and_userID_json_path)
 
         return "Completed"
         
