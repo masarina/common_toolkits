@@ -22,8 +22,9 @@ class DaijinMessageMakePlayer(SuperPlayer):
         """
         を使って会話をするためのプレイヤー。
         """       
-        # 初期化
-        ## 変数パスの簡易化
+        
+        """ 初期化 """
+        # 変数パスの簡易化
         all_data_dict = self.one_time_world_instance.ball.all_data_dict 
         bot_instance = all_data_dict["bot_instance"] # botインタンスを取得
         
@@ -33,14 +34,14 @@ class DaijinMessageMakePlayer(SuperPlayer):
         # JSONファイルのパスを設定
         json_path = os.path.join(thisDir_path, 'messages.json')
         
-        # JSONファイルを開いて辞書として読み込む
+        # ユーザーID、チャンネルID、メッセージ内容を取得
         with open(json_path, 'r') as json_file:
             messages_dict = json.load(json_file)
-
-        # 辞書からデータを一つ取得
-        if messages_dict:
-            # 日付時刻をキーにして、ユーザーID、チャンネルID、メッセージ内容を取得
-            timestamp, message_data = messages_dict.popitem()
+        
+        # 辞書からメッセージデータを一つ抜き取る
+        if messages_dict: 
+            # 日付時刻をキーにして、それぞれ取得
+            timestamp, message_data = messages_dict.popitem() # 1つだけ抜き取る。
             report_user_id = message_data['user_id']
             reported_channels_id = message_data['channel_id']
             progress_report_message = message_data['message']
@@ -48,15 +49,8 @@ class DaijinMessageMakePlayer(SuperPlayer):
             print("メッセージ辞書が空です。")
             return "No messages"
         
-        # ｢メッセージ送信者、チャンネル所持者｣が一致したならば、メッセージ処理を実行。
-        updateUIDPlayer = self.one_time_world_instance.updateUIDPlayer # インスタンスの取得（ツールとして）
-        reported_user_id = reported_user_id # メッセージ送信者のIDを取得
-        
-        # 送信されたチャンネルの所持者のIDを取得
-        users_data_dict = updateUIDPlayer.load_data_from_json(all_data_dict["all_user_information_dict"]) 
-        for user_id, user_data_dict in users_data_dict.items():
-            # 全てのユーザーのuser_data_dict内のチャンネルIDを検索
-        
+        """ ｢メッセージ送信者、チャンネル所持者｣が一致したならば、メッセージ処理を実行 """
+        # 
         
         if 
         
@@ -147,5 +141,42 @@ class DaijinMessageMakePlayer(SuperPlayer):
     
         # 非同期関数を同期的に実行して、チャンネル名を取得
         return asyncio.run(fetch_channel_name())
+
+    def channel_exist_than_true(self, reported_channel_id):
+        """
+        メンバーズ内の誰かが
+        チャンネルを所持していた場合に
+        Trueを返すメソッド
+        """
+        
+        """ 初期化 """
+        # インスタンス化
+        updateUIDPlayer = self.one_time_world_instance.updateUIDPlayer # インスタンスの取得（ツールとして）
+        
+        # 変数の用意
+        reported_channel_id = reported_channel_id
+        users_data_dict = updateUIDPlayer.load_data_from_json(all_data_dict["all_user_information_dict"]) # ユーザー全てのデータ
+        
+        """ チャンネルの所持者が居るか確認 """
+        # ユーザーを1人指定
+        for user_id, user_data_dict in users_data_dict.items():
+            key_name = "having_channel"
+            user_id # ユーザーID
+            user_data_dict # ユーザー情報
+            having_channel_list = user_data_dict[key_name]
+            
+            # ユーザーのチャンネルをひとつ指定
+            for having_channelID in having_channel_list:
+                
+                # ユーザのチャンネルと、今回のチャンネル一致でTrue
+                if having_channelID == reported_channel_id:
+                    
+                    # このチャンネル所持者居ればTrue
+                    return True
+                    
+            # このチャンネル所持者居なければFalse
+            return False
+        
+
 
 
