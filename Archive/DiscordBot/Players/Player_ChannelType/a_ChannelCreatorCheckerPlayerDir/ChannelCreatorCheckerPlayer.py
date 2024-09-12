@@ -126,7 +126,18 @@ class ChannelCreatorCheckerPlayer(SuperPlayer):
         
         メソッド。
         """
-        channel_owner_verified_json_path
+        # チャンネル所持者記録紙の読込み
+        with open(channel_owner_verified_json_path, 'r') as json_file:
+            channel_owner_verified_dict = json.load(json_file)
+        
+        # 今回のチャンネルが記録紙に存在でTrue
+        for id, starus in channel_owner_verified_dict.items():
+            if id == channel_id
+                return True
+                
+            # 存在無しでFalse
+            else:
+                return False
         
 
     def main(self):
