@@ -91,7 +91,7 @@ class BallObject:
         elif mode_name == "Mode_Standby":
             array_2d = [
                 [['FirstPlayer']],  # 例: 第一ミニスケジュール
-                [['OneSecondWeightPlayer']],
+                [['WaitOneSecondPlayer']],
                 [['DiscordMemberTrackerPlayer']],
                 [['DiscordMessageTrackerPlayer']],
                 [['DiscordChannelTrackerPlayer']],
