@@ -118,27 +118,19 @@ class ChannelCreatorCheckerPlayer(SuperPlayer):
         チャンネルの所持者の
         確認済みが記録されたjsonを参考に、
         
-        引数にとったチャンネルが、
-        チャンネル作成者確認済みのチャンネルであれば、
+        チャンネルが
+        確認済みであれば
         Trueを返す。
         
-        未だ確認済みでなければ
-        Falseを返す、
-        
-        メソッド。
+        確認済みでなければ
+        Falseを返す。
         """
-        # チャンネル所持者記録紙の読込み
         with open(channel_owner_verified_json_path, 'r') as json_file:
             channel_owner_verified_dict = json.load(json_file)
-        
-        # 今回のチャンネルが記録紙に存在でTrue
-        for id, starus in channel_owner_verified_dict.items():
-            if id == channel_id
-                return True
-                
-            # 存在無しでFalse
-            else:
-                return False
+    
+        # チャンネルが記録にあるか確認
+        return channel_owner_verified_dict.get(channel_id, False)
+
         
 
     def main(self):
