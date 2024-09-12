@@ -42,6 +42,7 @@ class ChannelCreatorCheckerPlayer(SuperPlayer):
             return None
         target_channel_id = next(iter(channel_data))  # JSONの最初のチャンネルIDを取得
         
+        
         """ もしこのチャンネルが
         既にチャンネル作成者の確認済みである場合
         passをする。
