@@ -42,9 +42,15 @@ class ChannelCreatorCheckerPlayer(SuperPlayer):
             return None
         target_channel_id = next(iter(channel_data))  # JSONの最初のチャンネルIDを取得
         
-        # もしこのチャンネルが
-        #既にチャンネル作成者の確認済みである場合、pass。(HelloMessageで作成されたチャンネルなど、パスされるように。)
+        """ もしこのチャンネルが
+        既にチャンネル作成者の確認済みである場合
+        passをする。
+        (HelloMessageで作成されたチャンネルなどが
+        パスされるように。)"""
         json_path = self.one_time_world_instance.ball.all_data_dict["channel_owner_verified_json_path"]
+        
+        
+        if False == self.check_this_channel_id_is_completed(target_channel_id):
 
         # チャンネルオブジェクトを取得
         target_channel = discord_bot.get_channel(int(target_channel_id))
