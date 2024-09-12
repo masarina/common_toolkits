@@ -85,25 +85,25 @@ class BallObject:
             array_2d = [
                 [['FirstPlayer']],  # 例: 第一ミニスケジュール
                 [['DebugPlayer'],['InitDiscordBotPlayer']], # Discordボットをインスタンス化
-                [['FinalPlayer']]  # 例: 第二ミニスケジュール
+                [['FinalPlayer']]  # 例: 第三ミニスケジュール
             ]
             
         elif mode_name == "Mode_Standby":
             array_2d = [
                 [['FirstPlayer']],  # 例: 第一ミニスケジュール
-                [['WaitOneSecondPlayer']],
-                [['DiscordMemberTrackerPlayer']],
-                [['DiscordMessageTrackerPlayer']],
-                [['DiscordChannelTrackerPlayer']],
+                [['WaitOneSecondPlayer']], # 1秒待機するプレイヤー
+                [['DiscordMemberTrackerPlayer']], # 新メンバーの有無フラグ
+                [['DiscordMessageTrackerPlayer']], # 新しいメッセージの有無フラグ
+                [['DiscordChannelTrackerPlayer']], # 新チャンネルの有無フラグ
                 [['FinalPlayer']]  # 例: 第二ミニスケジュール
             ]
             
-            
+        """ 新しいメンバーが入ってきた時の処理 """
         elif mode_name == "Mode_NewUserThenTask":
             array_2d = [
                 [['FirstPlayer']],  # 例: 第一ミニスケジュール
-                [['LoadToBallPlayer_By_ChannelType']], # 新メンバーにチャンネルを作成してあげるため。
-                [['UpdateUIDPlayer']],
+                [['LoadToBallPlayer_By_ChannelType']], # ChannelTypeプレイヤー群の為の初期化処理
+                [['UpdateUIDPlayer']], 
                 [['LoadToBallPlayer_By_MessageType']],
                 [['WelcomeNewUserPlayer']], # ウェルカムメッセージ
                 [['CreateChannelPlayer']], # 新メンバーにチャンネルを作ってあげる
