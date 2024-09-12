@@ -26,6 +26,11 @@ class LoadToBallPlayer_By_BallUpdaters(SuperPlayer):
         return "Completed"
         
     def update_channelIDInfo(self, all_user_dict_json_path, channel_info_dict_json_path):
+        """
+        チャンネルIDユーザーIDの辞書を元に
+        all_user_dictのjsonファイルを更新するメソッド
+        """
+        
         """ 初期化 """
         # データを取得
         with open(all_user_dict_json_path, 'r') as json_file:
