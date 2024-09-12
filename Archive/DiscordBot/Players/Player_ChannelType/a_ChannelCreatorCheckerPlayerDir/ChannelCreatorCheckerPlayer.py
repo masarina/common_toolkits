@@ -10,6 +10,7 @@ class ChannelCreatorCheckerPlayer(SuperPlayer):
         self.my_name = "ChannelCreatorCheckerPlayer"
         self.channel_creator_data_path = f"{os.path.dirname(os.path.abspath(__file__))}/channel_user_data.json"
         self.channel_creator_info_json_path = f"{os.path.dirname(os.path.abspath(__file__))}/channel_creator_info.json"
+        
 
     def return_my_name(self):
         return self.my_name
@@ -36,10 +37,14 @@ class ChannelCreatorCheckerPlayer(SuperPlayer):
         with open(channel_data_json_path, 'r') as file:
             channel_data = json.load(file)
 
-        # チャンネルIDを取得（最初のチャンネルを例として取得）
+        # チャンネルIDを取得（最初のチャンネルを取得）
         if not channel_data:
             return None
         target_channel_id = next(iter(channel_data))  # JSONの最初のチャンネルIDを取得
+        
+        # もしこのチャンネルが
+        #既にチャンネル作成者の確認済みである場合、pass。(HelloMessageで作成されたチャンネルなど、パスされるように。)
+        json_path = self.one_time_world_instance.ball.all_data_dict["channel_owner_verified_json_path"]
 
         # チャンネルオブジェクトを取得
         target_channel = discord_bot.get_channel(int(target_channel_id))
@@ -92,6 +97,9 @@ class ChannelCreatorCheckerPlayer(SuperPlayer):
         # 更新されたデータを保存
         with open(channel_creator_info_json_path, 'w') as file:
             json.dump(channel_creator_info, file, indent=4)
+
+    def check_this_channel_id_is_completed(self, channel_id):
+        
 
     def main(self):
         """
