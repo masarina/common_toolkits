@@ -25,25 +25,31 @@ class LoadToBallPlayer_By_BallUpdaters(SuperPlayer):
 
         return "Completed"
         
-    def update_channelIDInfo(self,all_user_dict_json_path, channel_info_dict_json_path):
+    def update_channelIDInfo(self, all_user_dict_json_path, channel_info_dict_json_path):
+        """ 初期化 """
         # データを取得
         with open(all_user_dict_json_path, 'r') as json_file:
             all_user_dict = json.load(json_file)
         with open(channel_info_dict_json_path, 'r') as json_file:
             channel_info_dict = json.load(json_file)
-            
+    
         """ all_user_dictをアップデート """
         key_name = "having_channel"
-        
-        # まだ having_channel が未定義であれば、からのリストを作成
-        for _, user_info_dict in all_user_dict.items()
-            user_info_dict.setdefault(key_name, []) # keyが未定義の場合[]で初期化
-        
+    
+        # まだ having_channel が未定義であれば、空のリストを作成
+        for _, user_info_dict in all_user_dict.items():
+            user_info_dict.setdefault(key_name, [])  # keyが未定義の場合[]で初期化
+    
         # all_user_dictを更新
-        for ChID, UID in channel_info_dict:
+        for ChID, UID in channel_info_dict.items():
             channel_list = all_user_dict[str(UID)][key_name]
-            channel_list += ChID
+            channel_list += [ChID]
             all_user_dict[str(UID)][key_name] = channel_list
+    
+        """ 更新した辞書をJSONに保存 """
+        with open(all_user_dict_json_path, 'w') as json_file:
+            json.dump(all_user_dict, json_file, indent=4)  # indent=4 で見やすい形式に
+
         
         
         
