@@ -1,4 +1,4 @@
-import time
+import asyncio
 from Players_CommonPlayers.SuperPlayerDir.SuperPlayer import SuperPlayer
 
 class WaitOneSecondPlayer(SuperPlayer):
@@ -11,17 +11,17 @@ class WaitOneSecondPlayer(SuperPlayer):
 
     def main(self):
         """
-        このメソッド実行直前に、self.one_time_world_instance に
-        最新のworldインスタンスが代入されています。
-        """
-        print(f"{self.return_my_name()} が実行されました。")
-        self.run()
-        return "Completed"
-
-    def run(self):
-        """
-        1秒待機します。
+        このメソッド実行直前に、self.one_time_world_instance に最新のworldインスタンスが代入されています。
+        メインの処理を実行します。
+        
+        → 非同期処理のrunメソッドを実行します。
         """
         print("1秒待機を開始します...")
-        time.sleep(1)
+        self.run()
         print("1秒待機が完了しました。")
+
+    def run(self):
+        asyncio.run(self.wait_one_second())
+
+    async def wait_one_second(self):
+        await asyncio.sleep(1)
