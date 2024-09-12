@@ -51,8 +51,8 @@ class WelcomeNewUserPlayer(SuperPlayer):
         categoryID = one_time_world_instance.ball.all_data_dict["categoryID_of_ProjectCategory"]
         visitorUser_name = (await bot.fetch_user(target_user_id)).name
         self.one_time_world_instance.ball.all_data_dict["categoryID_and_channelID_2dList_of_create_Channel"] = [
-            [categoryID, f"{visitorUser_name}さん_作業場", attach_ID=True],
-            [categoryID, f"{visitorUser_name}さん_休憩場", attach_ID=True]
+            [categoryID, f"{visitorUser_name}さん_作業場", attach_ID=True, are_you_bot=True],
+            [categoryID, f"{visitorUser_name}さん_休憩場", attach_ID=True, are_you_bot=True]
         ]  # 作成するチャンネルを[カテゴリID,チャンネル名]
 
         # ランクをnew_userにアップグレード
