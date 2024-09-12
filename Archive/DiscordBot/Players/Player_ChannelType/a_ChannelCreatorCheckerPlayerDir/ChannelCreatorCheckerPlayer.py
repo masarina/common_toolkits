@@ -47,39 +47,47 @@ class ChannelCreatorCheckerPlayer(SuperPlayer):
         passをする。
         (HelloMessageで作成されたチャンネルなどが
         パスされるように。)"""
-        json_path = self.one_time_world_instance.ball.all_data_dict["channel_owner_verified_json_path"]
+        # チャンネル作成者の確認済み記録辞書の取得
+        channel_owner_verified_json_path = self.one_time_world_instance.ball.all_data_dict["channel_owner_verified_json_path"] # パスを取得
         
+        # このチャンネル確認済みの場合Trueを代入
+        result = self.check_this_channel_id_is_completed(channel_owner_verified_json_path, target_channel_id)
         
-        if False == self.check_this_channel_id_is_completed(target_channel_id):
+        # このチャンネル作成者確認済みの場合pass
+        if result:
+            pass
+            
+        # このチャンネル、未だチャンネル作成者確認済みでなかった場合、確認をする。
+        elif False == result:
 
-        # チャンネルオブジェクトを取得
-        target_channel = discord_bot.get_channel(int(target_channel_id))
-
-        # ユーザーIDのリストを取得
-        active_user_ids = channel_data[target_channel_id]
-
-        # チャンネル作成者を確認する
-        for user_id in active_user_ids:
-            active_user = discord_bot.get_user(int(user_id))
-            if active_user is None:
-                continue
-
-            # チャンネルでユーザーにメッセージを送信して確認する
-            await target_channel.send(f"このチャンネルの作成者は{active_user.name}さんですか？ yes/no")
-
-            def check_message_response(message):
-                return message.channel.id == target_channel.id and message.content.lower() in ['yes', 'no', 'y', 'n']
-
-            try:
-                # メッセージの返答を待つ（どのユーザーでもOK）
-                response_message = await discord_bot.wait_for('message', check=check_message_response)
-                if response_message.content.lower() in ['yes', 'y']:
-                    # 作成者が確認された場合、ユーザーIDとチャンネルIDを返す
-                    return user_id, target_channel_id
-                elif response_message.content.lower() in ['no', 'n']:
+            # チャンネルオブジェクトを取得
+            target_channel = discord_bot.get_channel(int(target_channel_id))
+    
+            # ユーザーIDのリストを取得
+            active_user_ids = channel_data[target_channel_id]
+    
+            # チャンネル作成者を確認する
+            for user_id in active_user_ids:
+                active_user = discord_bot.get_user(int(user_id))
+                if active_user is None:
                     continue
-            except:
-                continue
+    
+                # チャンネルでユーザーにメッセージを送信して確認する
+                await target_channel.send(f"このチャンネルの作成者は{active_user.name}さんですか？ yes/no")
+    
+                def check_message_response(message):
+                    return message.channel.id == target_channel.id and message.content.lower() in ['yes', 'no', 'y', 'n']
+    
+                try:
+                    # メッセージの返答を待つ（どのユーザーでもOK）
+                    response_message = await discord_bot.wait_for('message', check=check_message_response)
+                    if response_message.content.lower() in ['yes', 'y']:
+                        # 作成者が確認された場合、ユーザーIDとチャンネルIDを返す
+                        return user_id, target_channel_id
+                    elif response_message.content.lower() in ['no', 'n']:
+                        continue
+                except:
+                    continue
 
         # 作成者が見つからなかった場合はNoneを返す
         return None
@@ -104,7 +112,21 @@ class ChannelCreatorCheckerPlayer(SuperPlayer):
         with open(channel_creator_info_json_path, 'w') as file:
             json.dump(channel_creator_info, file, indent=4)
 
-    def check_this_channel_id_is_completed(self, channel_id):
+    def check_this_channel_id_is_completed(self, channel_owner_verified_json_path, channel_id):
+        """
+        チャンネルの所持者の
+        確認済みが記録されたjsonを参考に、
+        
+        引数にとったチャンネルが、
+        チャンネル作成者確認済みのチャンネルであれば、
+        Trueを返す。
+        
+        未だ確認済みでなければ
+        Falseを返す、
+        
+        メソッド。
+        """
+        channel_owner_verified_json_path
         
 
     def main(self):
