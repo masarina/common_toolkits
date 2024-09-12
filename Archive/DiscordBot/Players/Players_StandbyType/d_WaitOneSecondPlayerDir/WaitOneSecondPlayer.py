@@ -12,9 +12,6 @@ class WaitOneSecondPlayer(SuperPlayer):
     def main(self):
         """
         このメソッド実行直前に、self.one_time_world_instance に最新のworldインスタンスが代入されています。
-        メインの処理を実行します。
-        
-        → 非同期処理のrunメソッドを実行します。
         """
         print("1秒待機を開始します...")
         self.run()
