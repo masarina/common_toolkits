@@ -50,10 +50,10 @@ class DaijinMessageMakePlayer(SuperPlayer):
             return "No messages"
         
         """ ｢メッセージ送信者、チャンネル所持者｣が一致したならば、メッセージ処理を実行 """
-        # 
+        # チャンネルの所持者がいた場合
+        if self.is_channel_owned_by_any_user(reported_channels_id):
         
-        if 
-        
+            """ メッセージを作成 """
             # モデルツールのインスタンス化(2回目以降はインスタンスを取得(処理軽量化の為))
             if all_data_dict["modelInference"] == None:
                 all_data_dict["modelInference"] = ModelInference()
@@ -142,7 +142,7 @@ class DaijinMessageMakePlayer(SuperPlayer):
         # 非同期関数を同期的に実行して、チャンネル名を取得
         return asyncio.run(fetch_channel_name())
 
-    def channel_exist_than_true(self, reported_channel_id):
+    def is_channel_owned_by_any_user(self, reported_channel_id):
         """
         メンバーズ内の誰かが
         チャンネルを所持していた場合に
