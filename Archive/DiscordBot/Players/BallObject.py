@@ -103,7 +103,8 @@ class BallObject:
             array_2d = [
                 [['FirstPlayer']],  # 例: 第一ミニスケジュール
                 [['LoadToBallPlayer_By_ChannelType']], # ChannelTypeプレイヤー群の為の初期化処理
-                [['UpdateUIDPlayer']], 
+                [['LoadToBallPlayer_By_BallUpdaters']], # BallUpdaterプレイヤー群の為の初期化処理
+                [['UpdateUIDPlayer']], # 
                 [['LoadToBallPlayer_By_MessageType']],
                 [['WelcomeNewUserPlayer']], # ウェルカムメッセージ
                 [['CreateChannelPlayer']], # 新メンバーにチャンネルを作ってあげる
