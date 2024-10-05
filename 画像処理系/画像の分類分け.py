@@ -206,7 +206,7 @@ def select_version(ver=None):
         keywords = ["足", "裸足", "足の根本", "ふともも"] # or検索。
 
     elif ver == 2:
-        keywords = ["小学生","プリティ","きゃわわ","きゃわいい","幼い","ロリコン","ロリコン向け"] # or検索。
+        keywords = ["魚"] # or検索。
 
     # テンプレート
     elif ver == 3:
