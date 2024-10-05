@@ -1,3 +1,7 @@
+"""
+結構つかうので置いとく。雑だけど。
+"""
+
 import os
 import torch
 import clip
