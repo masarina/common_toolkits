@@ -18,7 +18,7 @@ class FileMover:
         self.dest_dir = dest_dir
         self.keywords = keywords
         # self.device = "cuda" if torch.cuda.is_available() else "cpu"
-        self.device = "cpu" # 処理スピードそこまで変わらなかたので。
+        self.device = "cpu" # 処理スピードそこまで変わらなかたので。（バッチ処理をしてGPUつかうように改変すれば使高速にはなると思うけど。）
         self.model, self.preprocess = self.load_clip_model()
 
     def load_clip_model(self):
